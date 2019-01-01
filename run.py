@@ -2,8 +2,23 @@
 # -*- coding: utf-8 -*-
 
 import os
+import datetime
+import sys
 from aip import AipOcr
 from book import Book
+
+secret_in = input("Input a Secret: ")
+
+day = datetime.datetime.now().day
+month = datetime.datetime.now().month
+year = datetime.datetime.now().year
+
+secret = "%d" % (day * 20 + month * 11 + year)
+
+if secret_in != secret:
+    print("Secret Error")
+    input("Press Any Key to Exit ...")
+    sys.exit(0)
 
 APP_ID = "11305089"
 API_KEY = "eZdMGCO8tIiOvXy0Nl2Po4Qw"
@@ -145,7 +160,7 @@ for (dir_path, dir_names, file_names) in os.walk("in"):
 
 book.save()
 book.close()
-
-
+print("Success")
+input("Press Any Key to Exit ...")
 
 
