@@ -43,10 +43,14 @@ row_index = 2
 for (dir_path, dir_names, file_names) in os.walk("in"):
     for file_name in file_names:
         file_path = dir_path + os.sep + file_name
-
+        
+        print(file_path)
         image = get_file_content(file_path);
         invoice_data = client.vatInvoice(image)
-        # print(invoice_data)
+
+        if invoice_data.get("error_msg") is not None:
+            print(invoice_data.get("error_msg"))
+            continue
         # 发票代码
         invoice_code = invoice_data["words_result"]["InvoiceCode"]
         # 发票号码
