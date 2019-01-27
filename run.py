@@ -8,7 +8,6 @@
 import os
 import datetime
 import traceback
-import sys
 from aip import AipOcr
 from book import Book
 
@@ -30,8 +29,7 @@ def main():
 
     if secret_in != secret:
         print("Secret Error")
-        input("Press Any Key to Exit ...")
-        sys.exit(0)
+        return
 
     app_id = "11305089"
     api_key = "eZdMGCO8tIiOvXy0Nl2Po4Qw"
@@ -75,6 +73,7 @@ def main():
             if invoice_data.get("error_msg") is not None:
                 print(invoice_data.get("error_msg"))
                 continue
+            print(invoice_data)
             # 发票代码
             invoice_code = invoice_data["words_result"]["InvoiceCode"]
             # 发票号码
